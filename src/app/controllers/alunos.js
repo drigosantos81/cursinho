@@ -1,6 +1,7 @@
 const fs = require('fs');
-const data = require('../data.json');
-const { age, date, birthDay } = require('../utils');
+const data = require('../../lib/data.json');
+const { age, date, birthDay } = require('../../lib/utils');
+const Intl = require('intl');
 
 // index
 exports.index = function(req, res) {
@@ -39,7 +40,7 @@ exports.post = function(req, res) {
         created_at
     });
 
-    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err) {
+    fs.writeFile("./src/lib/data.json", JSON.stringify(data, null, 2), function(err) {
         if (err) return res.send("Erro ao salvar o arquivo.");
 
         return res.redirect("/alunos");
@@ -113,7 +114,7 @@ exports.put = function(req, res) {
 
     data.alunos[index] = aluno;
 
-    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err) {
+    fs.writeFile("./src/lib/data.json", JSON.stringify(data, null, 2), function(err) {
         if (err) {
             return res.send("Erro ao salvar o arquivo.");
         }
@@ -132,7 +133,7 @@ exports.delete = function(req, res) {
 
     data.alunos = filteredAlunos;
 
-    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err) {
+    fs.writeFile("../../lib/data.json", JSON.stringify(data, null, 2), function(err) {
         if (err) {
             return res.send("Erro ao salvar o arquivo.");
         };
