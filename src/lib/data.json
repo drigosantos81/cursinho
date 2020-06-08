@@ -1,0 +1,138 @@
+{
+  "escolaridade": [
+    {
+      "ensino_medio": "Ensino Médio Completo",
+      "sup_completo": "Superior Completo",
+      "mestrado": "Mestrado",
+      "doutorado": "Doutorado"
+    }
+  ],
+  "alunos": [
+    {
+      "id": 1,
+      "avatar_url": "https://images.unsplash.com/photo-1549436906-fef9e7682ede?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80",
+      "name": "Vitória Reis",
+      "email": "vik@gmail.com",
+      "birth": 1084406400000,
+      "anoescolar": "1º Ensino Médio",
+      "ch": "22",
+      "created_at": 1587394880133
+    },
+    {
+      "id": 4,
+      "avatar_url": "https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      "name": "Wall-e Simões",
+      "email": "walle@uol.com.br",
+      "birth": 1302998400000,
+      "anoescolar": "5º Funamental",
+      "ch": "36",
+      "created_at": 1587397844715
+    },
+    {
+      "id": 3,
+      "avatar_url": "https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=635&q=80",
+      "name": "Dóris Cruz",
+      "email": "doriz@gmail.com",
+      "birth": 1278547200000,
+      "anoescolar": "5º Funamental",
+      "ch": "36",
+      "created_at": 1587408898707
+    }
+  ],
+  "professores": [
+    {
+      "id": 2,
+      "avatar_url": "https://avatars0.githubusercontent.com/u/52610125?s=460&u=48f0753e5d5799e1faabe89fa277cc57f5eb40fb&v=4",
+      "name": "Rodrigo Emanuel",
+      "birth": 374976000000,
+      "gender": "M",
+      "services": "Informática, Banco de Dados, Python",
+      "created_at": 1587082439405,
+      "estudo": "Ensino Médio Completo",
+      "aula": "P"
+    },
+    {
+      "id": 3,
+      "avatar_url": "https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      "name": "Marcus Matheus",
+      "birth": 496454400000,
+      "gender": "M",
+      "services": "Biblioteconomia, Petróleo e Gás",
+      "created_at": 1587123630761,
+      "estudo": "Ensino Médio Completo"
+    },
+    {
+      "id": 4,
+      "avatar_url": "https://images.unsplash.com/photo-1569913486515-b74bf7751574?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=635&q=80",
+      "name": "Maria Lígia",
+      "birth": -493084800000,
+      "gender": "F",
+      "services": "Digitação",
+      "created_at": 1587123754873,
+      "estudo": "Ensino Médio Completo",
+      "aula": "E"
+    },
+    {
+      "id": 5,
+      "avatar_url": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      "name": "Mateus Cruz",
+      "birth": 476150400000,
+      "gender": "M",
+      "services": "Música",
+      "created_at": 1587126528060,
+      "estudo": "Ensino Médio Completo",
+      "aula": "P"
+    },
+    {
+      "id": 6,
+      "avatar_url": "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
+      "name": "Mayk Brito",
+      "birth": 949449600000,
+      "gender": "M",
+      "services": "JavaScript, Python, ReactJS",
+      "created_at": 1587134417054,
+      "estudo": "Ensino Médio Completo",
+      "aula": "E"
+    },
+    {
+      "id": 7,
+      "avatar_url": "https://images.unsplash.com/photo-1552673304-23f6ad21aada?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=677&q=80",
+      "name": "Caio Keven",
+      "birth": 833155200000,
+      "aula": "P",
+      "estudo": "Ensino Médio Completo",
+      "services": "Engenharia Civil, Filosofia",
+      "created_at": 1587162705324
+    },
+    {
+      "id": 9,
+      "avatar_url": "https://images.unsplash.com/photo-1544723495-432537d12f6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      "name": "Ari Carvalho",
+      "birth": -385430400000,
+      "aula": "E",
+      "estudo": "Ensino Médio Completo",
+      "services": "Direção",
+      "created_at": 1587163952058
+    },
+    {
+      "id": 8,
+      "avatar_url": "https://images.unsplash.com/photo-1549436906-fef9e7682ede?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80",
+      "name": "Carla Simões",
+      "birth": 503625600000,
+      "aula": "P",
+      "estudo": "Ensino Médio Completo",
+      "services": "Direito, Contabilidade",
+      "created_at": 1587222597709
+    },
+    {
+      "id": 10,
+      "avatar_url": "https://images.unsplash.com/photo-1544724107-6d5c4caaff30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      "name": "Diego Fernandes",
+      "birth": 623376000000,
+      "aula": "P",
+      "estudo": "Ensino Médio Completo",
+      "services": "React Native, ReactJS, JavaScript",
+      "created_at": 1587222657255
+    }
+  ]
+}
