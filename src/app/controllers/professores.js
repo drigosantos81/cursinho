@@ -1,9 +1,12 @@
-const { age, date } = require('../../lib/utils');
+const Professor = require('../models/Professor');
+const { age, date, birthDay } = require('../../lib/utils');
 const Intl = require('intl');
 
 module.exports = {
     index(req, res) {
-        return res.render("professores/index");
+        Professor.all(function(professores) {
+            return res.render("professores/index", { professores });
+        });
     },
     
     create(req, res) {
@@ -19,11 +22,23 @@ module.exports = {
             }
         }
 
-       return;
+       Professor.post(req.body, function(professor) {
+           return res.redirect(`/professores/${professor.id}`); // /${professor.id}
+       });
     },
     
     show(req, res) {
-        return;
+        Professor.find(req.params.id, function(professor) {
+            if (!professor) {
+                return res.send('Registro não encontrado');
+            }
+
+            professor.age = age(professor.birth);
+            professor.services = professor.services.split(',');
+            professor.created_at = date(professor.created_at).format;
+
+            return res.render('professores/show', { professor });
+        });
     },
     
     edit(req, res) {

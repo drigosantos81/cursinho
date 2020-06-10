@@ -20,6 +20,30 @@
 </div>
 
 <div class="item">
+    <div>Sexo</div>
+    <div>
+        <span>
+            <input 
+                type="radio" 
+                name="gender" 
+                value="M" 
+                    {% if professor.gender == "M" %}
+                        checked
+                    {% endif %}>Masculino
+        </span>
+        <span>
+            <input 
+                type="radio" 
+                name="gender" 
+                value="F"
+                    {% if professor.gender == "F" %}
+                        checked
+                    {% endif %}>Feminino
+        </span>
+    </div>        
+</div>
+
+<div class="item">
     <div>Grau de Escolaridade</div>
     <div>
         <select name="estudo" id="">

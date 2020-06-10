@@ -23,7 +23,10 @@ module.exports = {
         const day = `0${date.getUTCDate()}`.slice(-2);
 
         // Padrão de data no HTML: yyyy-mm-dd
-        return (`${year}-${month}-${day}`);
+        return {
+            iso: `${year}-${month}-${day}`,
+            format: `${day}/${month}/${year}`
+        } 
     },
 
     birthDay(timestamp) {
