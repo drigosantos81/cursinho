@@ -23,7 +23,7 @@ module.exports = {
         }
 
        Professor.post(req.body, function(professor) {
-           return res.redirect(`/professores/${professor.id}`); // /${professor.id}
+           return res.redirect(`/professores/${professor.id}`);
        });
     },
     
@@ -33,7 +33,7 @@ module.exports = {
                 return res.send('Registro não encontrado');
             }
 
-            professor.age = age(professor.birth);
+            professor.age = birthDay(professor.birth).iso;
             professor.services = professor.services.split(',');
             professor.created_at = date(professor.created_at).format;
 
@@ -42,24 +42,36 @@ module.exports = {
     },
     
     edit(req, res) {
-        return;
+        Professor.find(req.params.id, function(professor) {
+            if (!professor) {
+                return res.send('Registro não encontrado');
+            }
+
+            professor.birth = date(professor.birth).iso;
+
+            return res.render('professores/edit', { professor });
+        });
     },
     
     put(req, res) {
-        const { id } = req.body;
-        let index = 0;
+        const keys = Object.keys(req.body);
 
-        const foundProfessor = data.professores.find(function(professor, foundIndex) {
-            if (id == professor.id) {
-                index = foundIndex;
-                return true;
-            };
+        for (key of keys) {
+            if (req.body[key] == "") {
+                return res.send('Por favor preencha todos os campos');
+            }
+        }
+
+        Professor.update(req.body, function() {
+            return res.redirect(`/professores/${req.body.id}`);
         });
         
-       return;
     },
     
     delete(req, res) {
-        return;
+        Professor.delete(req.body.id, function() {
+            return res.redirect(`/professores`)
+        });
     }
+    
 }
