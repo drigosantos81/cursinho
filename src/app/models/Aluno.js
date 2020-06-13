@@ -41,55 +41,55 @@ module.exports = {
         });
     },
 
-    // find(id, callback) {
-    //     db.query(`
-    //         SELECT * FROM my_teacher
-    //         WHERE id = $1`, [id], function(err, results) {
-    //         if (err) {
-    //             throw `Problemas com o banco de dados! ${err}`
-    //         }
+    find(id, callback) {
+        db.query(`
+            SELECT * FROM students
+            WHERE id = $1`, [id], function(err, results) {
+            if (err) {
+                throw `Problemas com o banco de dados! ${err}`
+            }
 
-    //         callback(results.rows[0]);
-    //     });
-    // },
+            callback(results.rows[0]);
+        });
+    },
 
-    // update(data, callback) {
-    //     const query = `
-    //         UPDATE my_teacher SET
-    //         avatar_url=($1), name=($2), birth_date=($3), gender=($4), services=($5), estudo=($6), aula=($7)
-    //         WHERE id = $8
-    //     `;
+    update(data, callback) {
+        const query = `
+            UPDATE students SET
+            avatar_url=($1), name=($2), email=($3), date_birth=($4), escola=($5), ch=($6), estudo=($7)
+            WHERE id = $7
+        `;
 
-    //     const values = [
-    //         data.avatar_url,
-    //         data.name,
-    //         date(data.birth).iso,
-    //         data.gender,
-    //         data.services,
-    //         data.estudo,
-    //         data.aula,
-    //         data.id
-    //     ]
+        const values = [
+            data.avatar_url,
+            data.name,
+            data.email,
+            date(data.birth).iso,
+            data.escola,
+            data.ch,
+            date(Date.now()).iso,
+            data.id
+        ]
 
-    //     db.query(query, values, function(err, results) {
-    //         if (err) {
-    //             throw `Database error! ${err}`;
-    //         }
+        db.query(query, values, function(err, results) {
+            if (err) {
+                throw `Database error! ${err}`;
+            }
 
-    //         callback();
-    //     });
-    // },
+            callback();
+        });
+    },
 
-    // delete(id, callback) {
-    //     db.query(`
-    //         DELETE FROM my_teacher
-    //         WHERE id = $1`, [id], function(err, results) {
-    //         if (err) {
-    //             throw `Database error! ${err}`;
-    //         }
+    delete(id, callback) {
+        db.query(`
+            DELETE FROM students
+            WHERE id = $1`, [id], function(err, results) {
+            if (err) {
+                throw `Database error! ${err}`;
+            }
 
-    //         return callback();
-    //     });
-    // }
+            return callback();
+        });
+    }
 
 }

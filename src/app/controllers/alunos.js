@@ -27,28 +27,29 @@ module.exports = {
     },
     
     show(req, res) {
-        Aluno.find(req.params.id, function(professor) {
-            if (!professor) {
+        Aluno.find(req.params.id, function(aluno) {
+            if (!aluno) {
                 return res.send('Registro não encontrado');
             }
 
-            professor.age = age(professor.birth);
-            professor.services = professor.services.split(',');
-            professor.created_at = date(professor.created_at).format;
+            aluno.age = age(aluno.birth);
+            // aluno.services = aluno.services.split(',');
+            aluno.birthDay = birthDay(aluno.birth).iso;
+            aluno.created_at = date(aluno.created_at).format;
 
-            return res.render('alunos/show', { professor });
+            return res.render('alunos/show', { aluno });
         });
     },
     
     edit(req, res) {
-        Aluno.find(req.params.id, function(professor) {
-            if (!professor) {
+        Aluno.find(req.params.id, function(aluno) {
+            if (!aluno) {
                 return res.send('Registro não encontrado');
             }
 
-            professor.birth = date(professor.birth).iso;
+            aluno.birth = date(aluno.birth).iso;
 
-            return res.render('alunos/edit', { professor });
+            return res.render('alunos/edit', { aluno });
         });
     },
     
