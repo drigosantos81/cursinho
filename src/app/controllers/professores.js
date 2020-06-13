@@ -1,6 +1,5 @@
 const Professor = require('../models/Professor');
 const { age, date, birthDay } = require('../../lib/utils');
-const Intl = require('intl');
 
 module.exports = {
     index(req, res) {
@@ -33,7 +32,7 @@ module.exports = {
                 return res.send('Registro não encontrado');
             }
 
-            professor.age = birthDay(professor.birth).iso;
+            professor.age = age(professor.birth);
             professor.services = professor.services.split(',');
             professor.created_at = date(professor.created_at).format;
 
@@ -73,5 +72,5 @@ module.exports = {
             return res.redirect(`/professores`)
         });
     }
-    
+
 }

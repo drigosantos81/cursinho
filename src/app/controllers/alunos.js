@@ -1,15 +1,17 @@
+const Aluno = require('../models/Aluno');
 const { age, date, birthDay } = require('../../lib/utils');
-const Intl = require('intl');
 
 module.exports = {
     index(req, res) {
-        return res.render("alunos/index");
+        Aluno.all(function(alunos) {
+            return res.render("alunos/index", { alunos });
+        });
     },
-
+    
     create(req, res) {
         return res.render("alunos/create");
     },
-
+    
     post(req, res) {
         const keys = Object.keys(req.body);
 
@@ -19,32 +21,56 @@ module.exports = {
             }
         }
 
-        return;
+       Aluno.post(req.body, function(aluno) {
+           return res.redirect(`/alunos/${aluno.id}`);
+       });
     },
-
+    
     show(req, res) {
-        return;
-    },
+        Aluno.find(req.params.id, function(professor) {
+            if (!professor) {
+                return res.send('Registro não encontrado');
+            }
 
+            professor.age = age(professor.birth);
+            professor.services = professor.services.split(',');
+            professor.created_at = date(professor.created_at).format;
+
+            return res.render('alunos/show', { professor });
+        });
+    },
+    
     edit(req, res) {
-        return;
+        Aluno.find(req.params.id, function(professor) {
+            if (!professor) {
+                return res.send('Registro não encontrado');
+            }
+
+            professor.birth = date(professor.birth).iso;
+
+            return res.render('alunos/edit', { professor });
+        });
     },
-
+    
     put(req, res) {
-        const { id } = req.body;
-        let index = 0;
+        const keys = Object.keys(req.body);
 
-        const foundAluno = data.alunos.find(function(aluno, foundIndex) {
-            if (id == aluno.id) {
-                index = foundIndex;
-                return true;
-            };
+        for (key of keys) {
+            if (req.body[key] == "") {
+                return res.send('Por favor preencha todos os campos');
+            }
+        }
+
+        Aluno.update(req.body, function() {
+            return res.redirect(`/alunos/${req.body.id}`);
         });
         
-        return;
     },
-
+    
     delete(req, res) {
-        return
+        Aluno.delete(req.body.id, function() {
+            return res.redirect(`/alunos`)
+        });
     }
+
 }
