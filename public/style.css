@@ -111,6 +111,13 @@ body {
 
 #rodape {
     background-color: var(--color-blue-light);
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 0 0 0;
+}
+
+#rodape div {
+    margin: 0px 40px 0px 40px;
 }
 
 .home-start {
