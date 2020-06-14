@@ -4,6 +4,7 @@ const { age, date, birthDay } = require('../../lib/utils');
 module.exports = {
     index(req, res) {
         Professor.all(function(professores) {
+            console.log(professores);
             return res.render("professores/index", { professores });
         });
     },

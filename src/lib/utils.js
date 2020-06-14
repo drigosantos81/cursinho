@@ -45,7 +45,8 @@ module.exports = {
             month,
             year,
             iso: `${day}/${month}`,
-            birthDate: `${month}/${year}`
+            birthDate: `${month}/${year}`,
+            format: `${day}/${month}/${year}`
         };
     }
 }
