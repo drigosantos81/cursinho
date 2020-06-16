@@ -29,7 +29,7 @@ module.exports = {
             date(data.birth).iso,
             data.escola,
             data.ch,
-            data.professor_id,
+            data.professor,
             date(Date.now()).iso
         ]
 
@@ -58,8 +58,8 @@ module.exports = {
     update(data, callback) {
         const query = `
             UPDATE students SET
-            avatar_url=($1), name=($2), email=($3), date_birth=($4), escola=($5), ch=($6)
-            WHERE id = $7
+            avatar_url=($1), name=($2), email=($3), date_birth=($4), escola=($5), ch=($6), professor_id=($7)
+            WHERE id = $8
         `;
 
         const values = [
@@ -69,6 +69,7 @@ module.exports = {
             date(data.birth).iso,
             data.escola,
             data.ch,
+            data.professor,
             data.id
         ]
 

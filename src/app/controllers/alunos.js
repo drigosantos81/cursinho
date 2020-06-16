@@ -50,7 +50,9 @@ module.exports = {
 
             aluno.birth = date(aluno.date_birth).iso;
 
-            return res.render('alunos/edit', { aluno });
+            Aluno.professorSelectOptions(function(options) {
+                return res.render("alunos/edit", { aluno, professorOptions: options });
+            });
         });
     },
     
