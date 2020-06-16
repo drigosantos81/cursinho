@@ -42,59 +42,23 @@
 </div>
 
 <div class="item">
-    <div>Carga Horária</div>
+    <div>Carga Horária (h)</div>
     <div>
         <input type="number" name="ch" placeholder="Informe a Carga Horária semanal..." value="{{ aluno.ch }}">
     </div>        
 </div>
 
-<button type="submit">Salvar</button>
-
-{# <div class="item">
-    <div>Tipo da Aula</div>
+<div class="item">
+    <div>Estuda com</div>
     <div>
-        <span>
-            <input 
-                type="radio" 
-                name="aula" 
-                value="P" 
-                    {% if professor.aula == "P" %}
-                        checked
-                    {% endif %}>Presencial
-        </span>
-        <span>
-            <input 
-                type="radio" 
-                name="aula" 
-                value="E"
-                    {% if professor.aula == "E" %}
-                        checked
-                    {% endif %}>EAD
-        </span>
+        <select name="professor">
+            {% for professor in professorOptions %}
+                <option value="{{professor.id}}" {% if students.professor_id == professor.id %}selected{% endif %}>
+                    {{professor.name}}
+                </option>
+            {% endfor %}
+        </select>
     </div>        
-</div> #}
+</div>
 
-{# <option value="f5"
-            {% if aluno.anoescolar == "f5" %} seleted {% endif %}
-                >5º Funamental</option>
-            <option value="f6"
-            {% if aluno.anoescolar == "f6" %} seleted {% endif %}
-                >6º Funamental</option>
-            <option value="f7"
-            {% if aluno.anoescolar == "f7" %} seleted {% endif %}
-                >7º Funamental</option>
-            <option value="f8"
-            {% if aluno.anoescolar == "f8" %} seleted {% endif %}
-                >8º Funamental</option>
-            <option value="f8"
-            {% if aluno.anoescolar == "f9" %} seleted {% endif %}
-                >9º Funamental</option>
-            <option value="m1"
-            {% if aluno.anoescolar == "m1" %} seleted {% endif %}
-                >1º Ensino Médio</option>
-            <option value="m2"
-            {% if aluno.anoescolar == "m2" %} seleted {% endif %}
-                >2º Ensino Médio</option>
-            <option value="m3"
-            {% if aluno.anoescolar == "m3" %} seleted {% endif %}
-                >3º Ensino Médio</option> #}
+<button type="submit">Salvar</button>

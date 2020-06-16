@@ -17,8 +17,8 @@ module.exports = {
 
     post(data, callback) {
         const query = `
-            INSERT INTO students (avatar_url, name, email, date_birth, escola, ch, created_at)
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            INSERT INTO students (avatar_url, name, email, date_birth, escola, ch, professor_id, created_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             RETURNING id
         `;
 
@@ -26,9 +26,10 @@ module.exports = {
             data.avatar_url,
             data.name,
             data.email,
-            date(data.date_birth).iso,
+            date(data.birth).iso,
             data.escola,
             data.ch,
+            data.professor_id,
             date(Date.now()).iso
         ]
 
@@ -43,8 +44,9 @@ module.exports = {
 
     find(id, callback) {
         db.query(`
-            SELECT * FROM students
-            WHERE id = $1`, [id], function(err, results) {
+            SELECT students.*, my_teacher.name AS professor_name FROM students
+            LEFT JOIN my_teacher ON (students.professor_id = my_teacher.id)
+            WHERE students.id = $1`, [id], function(err, results) {
             if (err) {
                 throw `Problemas com o banco de dados! ${err}`
             }
@@ -64,7 +66,7 @@ module.exports = {
             data.avatar_url,
             data.name,
             data.email,
-            date(data.date_birth).iso,
+            date(data.birth).iso,
             data.escola,
             data.ch,
             data.id
@@ -88,6 +90,16 @@ module.exports = {
             }
 
             return callback();
+        });
+    },
+
+    professorSelectOptions(callback) {
+        db.query(`SELECT name, id FROM my_teacher`, function(err, results) {
+            if (err) {
+                throw `Database error! ${err}`;
+            }
+
+            callback(results.rows);
         });
     }
 

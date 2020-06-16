@@ -9,7 +9,9 @@ module.exports = {
     },
     
     create(req, res) {
-        return res.render("alunos/create");
+        Aluno.professorSelectOptions(function(options) {
+            return res.render("alunos/create", { professorOptions: options });
+        });
     },
     
     post(req, res) {
