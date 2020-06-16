@@ -32,9 +32,8 @@ module.exports = {
                 return res.send('Registro não encontrado');
             }
 
-            aluno.age = age(aluno.birth);
-            // aluno.services = aluno.services.split(',');
-            aluno.birthDay = birthDay(aluno.birth).iso;
+            aluno.age = age(aluno.date_birth);
+            aluno.birthDay = birthDay(aluno.date_birth).iso;
             aluno.created_at = date(aluno.created_at).format;
 
             return res.render('alunos/show', { aluno });
@@ -47,7 +46,7 @@ module.exports = {
                 return res.send('Registro não encontrado');
             }
 
-            aluno.birth = date(aluno.birth).iso;
+            aluno.birth = date(aluno.date_birth).iso;
 
             return res.render('alunos/edit', { aluno });
         });

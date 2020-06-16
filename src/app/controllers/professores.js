@@ -4,7 +4,6 @@ const { age, date, birthDay } = require('../../lib/utils');
 module.exports = {
     index(req, res) {
         Professor.all(function(professores) {
-            console.log(professores);
             return res.render("professores/index", { professores });
         });
     },
@@ -33,7 +32,7 @@ module.exports = {
                 return res.send('Registro não encontrado');
             }
 
-            professor.age = age(professor.birth);
+            professor.age = age(professor.birth_date);
             professor.services = professor.services.split(',');
             professor.created_at = date(professor.created_at).format;
 
@@ -47,7 +46,7 @@ module.exports = {
                 return res.send('Registro não encontrado');
             }
 
-            professor.birth = date(professor.birth).iso;
+            professor.birth = date(professor.birth_date).iso;
 
             return res.render('professores/edit', { professor });
         });

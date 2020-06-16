@@ -26,7 +26,7 @@ module.exports = {
             data.avatar_url,
             data.name,
             data.email,
-            date(data.birth).iso,
+            date(data.date_birth).iso,
             data.escola,
             data.ch,
             date(Date.now()).iso
@@ -64,7 +64,7 @@ module.exports = {
             data.avatar_url,
             data.name,
             data.email,
-            date(data.birth).iso,
+            date(data.date_birth).iso,
             data.escola,
             data.ch,
             data.id
