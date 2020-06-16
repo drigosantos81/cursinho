@@ -10,6 +10,7 @@
             <tr>
                 <th>Professor</th>
                 <th>Atendimento</th>
+                <th>Alunos</th>
                 <th>Ação</th>
             </tr>
 
@@ -20,6 +21,7 @@
                             <span style="background-image: url({{professor.avatar_url}})"></span>
                             {{professor.name}}</td>
                         <td>{{professor.services}}</td>
+                        <td>{{professor.total_alunos}}</td>
                         <td><a href="/professores/{{professor.id}}">Ver</a></td>
                     </tr>
                 {% endfor %}

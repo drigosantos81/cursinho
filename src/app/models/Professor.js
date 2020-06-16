@@ -5,11 +5,13 @@ module.exports = {
 
     all(callback) {
         db.query(`
-        SELECT * FROM my_teacher
-        ORDER BY name ASC`, function(err, results) {
-            if (err) {
-                throw `Problemas com o banco de dados! ${err}`
-            }
+            SELECT my_teacher.*, COUNT(students) AS total_alunos FROM my_teacher
+            LEFT JOIN students ON (students.professor_id = my_teacher.id)
+            GROUP BY my_teacher.id
+            ORDER BY name ASC`, function(err, results) {
+                if (err) {
+                    throw `Problemas com o banco de dados! ${err}`
+                }
 
             callback(results.rows);
         });
