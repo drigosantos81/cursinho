@@ -56,6 +56,23 @@ module.exports = {
         });
     },
 
+    findMaster(filterMaster, callback) {
+        db.query(`
+            SELECT my_teacher.*, COUNT(students) AS TOTAL_STUDENTS FROM my_teacher
+            LEFT JOIN students ON (students.professor_id = my_teacher.id)
+            WHERE my_teacher.name ILIKE '%${filterMaster}%'
+            OR my_teacher.services ILIKE '%${filterMaster}%'
+            GROUP BY my_teacher.id
+            ORDER BY total_students DESC
+        `, function(err, results) {
+            if (err) {
+                throw `Database error! ${err}`
+            }
+
+            callback(results.rows);
+        });
+    },
+
     update(data, callback) {
         const query = `
             UPDATE my_teacher SET

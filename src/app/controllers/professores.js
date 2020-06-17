@@ -3,9 +3,17 @@ const { age, date, birthDay } = require('../../lib/utils');
 
 module.exports = {
     index(req, res) {
-        Professor.all(function(professores) {
-            return res.render("professores/index", { professores });
-        });
+        const { filterMaster } = req.query;
+
+        if (filterMaster) {
+            Professor.findMaster(filterMaster, function(professores) {
+                return res.render("professores/index", { professores, filterMaster });
+            });
+        } else {
+            Professor.all(function(professores) {
+                return res.render("professores/index", { professores });
+            });
+        }        
     },
     
     create(req, res) {
