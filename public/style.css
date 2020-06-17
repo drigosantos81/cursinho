@@ -25,7 +25,7 @@ body {
     margin: 0px 0px 0px 0px;
     padding: 10px 0px 5px 0px;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
 }
 
 .topo h1 {
@@ -35,13 +35,20 @@ body {
 }
 
 .topo img {
-    width: 13%;
+    width: 800px;
+    max-width: 13%;
     margin: 0px 15px 0px 15px;
 }
 
-.topo input {
+.menu-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.menu-form input {
     border: 0px solid #000000;
-    font-size: 20px;
+    font-size: 16px;
     margin: 2px 2px;
     padding: 2px 2px;
     width: 300px;
@@ -49,16 +56,12 @@ body {
     box-shadow: #000000 1px 2px 3px 1px;
 }
 
-.menu-2 {
-    display: flex;
-}
-
-.menu-2 div {
-    margin: 7px 0 0 0;
-}
-
-.menu-2 div img {
-    margin: 7px 0 0 6px;
+.topo .menu-form button {
+    width: 104px;
+    margin: 0 20px 0 0px;
+    font-weight: 100;
+    font-size: 14px;
+    padding: 5px 0px 6px 0;
 }
 
 .container {
@@ -132,10 +135,30 @@ body {
     margin: 0 0 -10px 0;
 }
 
-.coluna-rodape h3 {
+.coluna-rodape a {
     font-size: 14px;
     font-weight: 100;
-    margin: 3px auto;
+    color: white;
+    text-decoration: none;
+    margin: 3px 0 0 0;
+}
+
+.coluna-rodape ul {
+    list-style: none;
+}
+
+.coluna-rodape li {
+    display: flex;
+    align-items: center;
+    margin: 2px auto;
+}
+
+.coluna-rodape img {
+    width: 22px;
+    background-color: white;
+    margin: 0px 3px 2px 0;
+    padding: 2px;
+    border-radius: 3px;
 }
 
 #formulario div {
