@@ -5,15 +5,15 @@ module.exports = {
     index(req, res) {
         const { filterMaster } = req.query;
 
-        if (filterMaster) {
-            Professor.findMaster(filterMaster, function(professores) {
-                return res.render("professores/index", { professores, filterMaster });
-            });
-        } else {
-            Professor.all(function(professores) {
-                return res.render("professores/index", { professores });
-            });
-        }        
+            if (filterMaster) {
+                Professor.findProfessor(filterMaster, function(professores) {
+                    return res.render("professores/index", { professores, filterMaster });
+                });
+            } else {
+                Professor.all(function(professores) {
+                    return res.render("professores/index", { professores });
+                });
+        }                
     },
     
     create(req, res) {

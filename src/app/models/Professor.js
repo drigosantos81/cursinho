@@ -56,7 +56,7 @@ module.exports = {
         });
     },
 
-    findMaster(filterMaster, callback) {
+    findProfessor(filterMaster, callback) {
         db.query(`
             SELECT my_teacher.*, COUNT(students) AS total_alunos FROM my_teacher
             LEFT JOIN students ON (students.professor_id = my_teacher.id)
@@ -64,6 +64,20 @@ module.exports = {
             OR my_teacher.services ILIKE '%${filterMaster}%'
             GROUP BY my_teacher.id
             ORDER BY total_alunos DESC
+        `, function(err, results) {
+            if (err) {
+                throw `Database error! ${err}`
+            }
+
+            callback(results.rows);
+        });
+    },
+
+    findAluno(filterAluno, callback) {
+        db.query(`
+            SELECT students.* FROM students
+            WHERE students.name ILIKE '%${filterAluno}%'
+            ORDER BY students DESC
         `, function(err, results) {
             if (err) {
                 throw `Database error! ${err}`

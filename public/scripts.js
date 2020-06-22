@@ -6,3 +6,7 @@ for (item of menuItens) {
         item.classList.add("active");
     };
 };
+
+// let select = document.getElementById("ddSelect");
+// let displayText = select.options[select.selectIndex].text;
+// document.getElementById('algum id').value=displayText;
