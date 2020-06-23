@@ -464,6 +464,13 @@ td:nth-child(3) {
     margin: 0 16px;
 }
 
+.paginationActive {
+    background-color: white;
+    color: var(--color-blue-light);
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .pagination a:hover {
     filter: brightness(0.3);
     border-bottom: 1px solid var(--primary-color);

@@ -1,11 +1,19 @@
 const currentPage = location.pathname;
 const menuItens = document.querySelectorAll(".menu div a ");
+const listPages = document.querySelectorAll(".pagination");
 
 for (item of menuItens) {
     if (currentPage.includes(item.getAttribute("href"))) {
         item.classList.add("active");
     };
 };
+
+for (selectedPagination of listPages) {
+    if (currentPage.includes(selectedPagination.getAttribute(`href`))) {
+        currentPage.classList.add("paginationActive");
+    }
+}
+
 
 // let select = document.getElementById("ddSelect");
 // let displayText = select.options[select.selectIndex].text;
@@ -20,7 +28,7 @@ function paginate(selectedPage, totalPages) {
         const firstAndLastPage = currentPage == 1 || currentPage == totalPages;
         const pagesAfterSelectedPage = currentPage <= selectedPage + 2;
         const pagesBeforeSelectedPage = currentPage >= selectedPage - 2;
-        
+                
         if (firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage) {
             
             if (oldPage && currentPage - oldPage > 2) {
@@ -56,8 +64,10 @@ function createPagination(pagination) {
                 elements += `<a href="?page=${page}&filter=${filter}">${page}</a>`;
             } else {
                 elements += `<a href="?page=${page}">${page}</a>`;
-            }        
-        }    
+            }
+        }
+
+
     }
 
     pagination.innerHTML = elements;
@@ -68,3 +78,12 @@ const pagination = document.querySelector('.pagination');
 if (pagination) {
     createPagination(pagination);
 }
+
+// =============================================================================
+// const listPages = document.querySelectorAll(".pagination");
+
+// for (selectedPagination of listPages) {
+//     if (currentPage.includes(selectedPagination.getAttribute(`href`))) {
+// currentPage.classList.add("paginationActive");
+//     }
+// }

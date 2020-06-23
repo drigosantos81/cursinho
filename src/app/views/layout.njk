@@ -26,13 +26,15 @@
                     <option value="professor">Professor</option>
                     <option value="aluno">Aluno</option>
                 </select>
+
                 <form action="/professores" method="GET">
-                    <input 
-                        type="text" 
-                        name="filterMaster"
-                        placeholder="Pesquisar professor por curso..."
-                        value={{filterMaster}}
-                    >
+                    {# {% if  %} #}
+                        <input 
+                            type="text" 
+                            name="filter"
+                            placeholder="Pesquisar professor por curso..."
+                            value={{filter}}
+                        >
                     <button type="submit">Buscar</button>
                 </form>
             </div>
@@ -120,8 +122,6 @@
             
                 </form>
             </div>
-
-        
 
         </div>
 
