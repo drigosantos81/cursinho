@@ -3,17 +3,41 @@ const { age, date, birthDay } = require('../../lib/utils');
 
 module.exports = {
     index(req, res) {
-        const { filterMaster } = req.query;
 
-            if (filterMaster) {
-                Professor.findProfessor(filterMaster, function(professores) {
-                    return res.render("professores/index", { professores, filterMaster });
-                });
-            } else {
-                Professor.all(function(professores) {
-                    return res.render("professores/index", { professores });
-                });
-        }                
+        let { filter, page, limit } = req.query;
+
+        page = page || 1;
+        limit = limit || 2;
+        let offset = limit * (page - 1);
+
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(professores) {
+
+                const pagination = {
+                    total: Math.ceil(professores[0].total / limit),
+                    page
+                }
+                return res.render("professores/index", { professores, pagination, filter });
+            }
+        };
+
+        Professor.paginate(params);
+
+        // const { filterMaster } = req.query;
+
+        //     if (filterMaster) {
+        //         Professor.findProfessor(filterMaster, function(professores) {
+        //             return res.render("professores/index", { professores, filterMaster });
+        //         });
+        //     } else {
+        //         Professor.all(function(professores) {
+        //             return res.render("professores/index", { professores });
+        //         });
+        // }                
     },
     
     create(req, res) {

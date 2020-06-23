@@ -124,6 +124,41 @@ module.exports = {
 
             return callback();
         });
+    },
+
+    paginate(params) {
+        const { filter, limit, offset , callback } = params;
+
+        let query = '',
+            filterQuery = '',
+            totalQuery = `(
+                SELECT COUNT(*) FROM my_teacher
+            ) AS total`
+
+        if (filter) {
+            filterQuery = `
+            WHERE my_teacher.name ILIKE '%${filter}%'
+            OR my_teacher.services ILIKE '%${filter}%'`
+
+            totalQuery = `(
+                SELECT COUNT(*) FROM my_teacher
+                ${filterQuery}
+            ) AS total`
+        }
+
+        query = `
+            SELECT my_teacher.*, ${totalQuery}, COUNT(students) AS total_students FROM my_teacher
+            LEFT JOIN students ON (my_teacher.id = students.professor_id)
+            ${filterQuery}
+            GROUP BY my_teacher.id LIMIT $1 OFFSET $2`
+        
+        db.query(query, [limit, offset], function(err, results) {
+            if (err) {
+                throw `Database error! ${err}`;
+            }
+
+            callback(results.rows);
+        });
     }
 
 }
