@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="/style.css">
+        
+        {% block head %}
+        
+        <title>O Cursinho</title>
+        
+        {% endblock %}
+
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <section class="topo">
+            <div>
+                <img src="/logo.png" alt="Logo">
+            </div>
+            
+            <div class="menu-form">
+                <select name="" id="ddSelect" onchange=selecao()>
+                    <option value="professor">Professor</option>
+                    <option value="aluno">Aluno</option>
+                </select>
+
+                <form action="/professores" method="GET">
+                        <input 
+                            type="text" 
+                            name="filter"
+                            placeholder="Pesquisar professor por curso..."
+                            value={{filter}}
+                        >
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>            
+        </section>
+
+        <div class="container">            
+            <section class="menu">                
+                <div>
+                    <a href="/home">Home</a>
+                </div>
+                <div>
+                    <a href="/professores">Professores</a>
+                </div>
+                <div>
+                    <a href="/alunos">Alunos</a>
+                </div>
+                <div>
+                    <a href="/provas">Provas</a>
+                </div>
+                <div>
+                    <a href="/Adm">Redes Sociais</a>
+                </div>
+                <div>
+                    <a href="/sobre">Sobre</a>
+                </div>                                
+            </section>
+
+            <section class="conteudo">
+
+                {% block content %}{% endblock %}
+
+            </section>            
+        </div>
+
+        {% include 'layout/footer.njk' %}
+
+        <script src="/scripts.js"></script>
+       
+    </body>
+</html>
