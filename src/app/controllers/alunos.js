@@ -3,29 +3,41 @@ const { age, date, birthDay } = require('../../lib/utils');
 
 module.exports = {
     index(req, res) {
-        let { filter, page, limit } = req.query;
+        const { filterAluno } = req.query;
 
-        page = page || 1;
-        limit = limit || 2;
-        let offset = limit * (page - 1);
-
-        const params = {
-            filter,
-            page,
-            limit,
-            offset,
-            callback(alunos) {
-
-                const pagination = {
-                    total: Math.ceil(alunos[0].total / limit),
-                    page
-                }
-                
-                return res.render('alunos/index', { alunos, pagination, filter });
-            }            
+            if (filterAluno) {
+                Aluno.findAluno(filterAluno, function(alunos) {
+                    return res.render("alunos/index", { alunos, filterAluno });
+                });
+            } else {
+                Aluno.all(function(alunos) {
+                    return res.render("alunos/index", { alunos });
+            });
         }
 
-        Aluno.paginate(params);
+        // let { filter, page, limit } = req.query;
+
+        // page = page || 1;
+        // limit = limit || 2;
+        // let offset = limit * (page - 1);
+
+        // const params = {
+        //     filter,
+        //     page,
+        //     limit,
+        //     offset,
+        //     callback(alunos) {
+
+        //         const pagination = {
+        //             total: Math.ceil(alunos[0].total / limit),
+        //             page
+        //         }
+                
+        //         return res.render('alunos/index', { alunos, pagination, filter });
+        //     }            
+        // }
+
+        // Aluno.paginate(params);
     },
     
     create(req, res) {

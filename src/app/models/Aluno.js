@@ -55,6 +55,21 @@ module.exports = {
         });
     },
 
+    findAluno(filterAluno, callback) {
+        db.query(`
+            SELECT students.*, my_teacher.name AS professor_name FROM students
+            LEFT JOIN my_teacher ON (students.professor_id = my_teacher.id)
+            WHERE students.name ILIKE '%${filterAluno}%'
+            OR my_teacher.name ILIKE '%${filterAluno}%'
+        `, function(err, results) {
+            if (err) {
+                throw `Database error! ${err}`
+            }
+
+            callback(results.rows);
+        });
+    },
+
     update(data, callback) {
         const query = `
             UPDATE students SET

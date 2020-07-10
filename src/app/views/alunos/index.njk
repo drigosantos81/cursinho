@@ -3,32 +3,41 @@
 {% block content %}
 
 <div class="card table-container">
-    <a href="/alunos/create">Novo</a>
+    <div>
+        <a href="/alunos/create">Novo</a>
+    <div class="menu-form">
+        <form action="/alunos" method="GET">
+                <input 
+                    type="text" 
+                    name="filterAluno"
+                    placeholder="Pesquisar professor pelo nome..."
+                    value={{filterAluno}}
+                >
+            <button id="buscaAluno" type="submit">Buscar</button>
+        </form>
+    </div>
+    </div>
     
     <table width="100%">
         <thead>
-
             <tr>
                 <th>Aluno</th>
                 <th>Ano Escolar</th>
                 <th>Carga Horária</th>
                 <th>Ação</th>
             </tr>
-
             <tbody>
-
-            {% for aluno in alunos %}
-                <tr>
-                    <td>
-                        <span style="background-image: url({{aluno.avatar_url}})"></span>
-                        {{aluno.name}}</td>
-                    <td>{{aluno.escola}}</td>
-                    <td>{{aluno.ch}} h</td>
-                    <td><a href="/alunos/{{aluno.id}}">Ver</a></td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        
+                {% for aluno in alunos %}
+                    <tr>
+                        <td>
+                            <span style="background-image: url({{aluno.avatar_url}})"></span>
+                            {{aluno.name}}</td>
+                        <td>{{aluno.escola}}</td>
+                        <td>{{aluno.ch}} h</td>
+                        <td><a href="/alunos/{{aluno.id}}">Ver</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>        
         </thead>
     </table>    
 </div>

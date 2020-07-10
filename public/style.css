@@ -67,7 +67,7 @@ body {
     margin: 2px 10px;
     padding: 2px 10px 2px 5px;
     width: 300px;
-    height: 25px;
+    height: 23px;
     box-shadow: #000000 1px 2px 3px 1px;
 }
 
@@ -383,6 +383,7 @@ a.button {
 }
 
 .table-container table {
+    margin: 20px 0 0 0;
     border-spacing: 0;
 }
 
@@ -421,8 +422,15 @@ tbody tr td:first-child span {
     border: 2px solid var(--color-orange);
 }
 
+.table-container div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 tbody tr td:last-child a,
-.table-container > a {
+#buscaAluno,
+.table-container > div a {
     background-color: var(--color-blue-light);
     padding: 8px 16px;
     text-decoration: none;
@@ -432,8 +440,12 @@ tbody tr td:last-child a,
     border-radius: 6px;
 }
 
-.table-container > a {
-    margin-bottom: 16px;
+#buscaAluno {
+    margin: 0;
+    width: 100px;
+}
+
+.table-container > div a {
     display: inline-block;
 }
 
