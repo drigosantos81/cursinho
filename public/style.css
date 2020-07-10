@@ -138,6 +138,10 @@ body {
     background-color: var(--color-blue-light);
 }
 
+.push {
+    height: 30px;
+}
+
 #rodape {
     background-color: var(--color-blue-light);
     display: flex;

@@ -1,5 +1,6 @@
 const db = require('../../config/db');
 const { age, date } = require('../../lib/utils');
+const { off } = require('../../config/db');
 
 module.exports = {
 
@@ -120,33 +121,30 @@ module.exports = {
     },
 
     paginate(params) {
-        const { filter, limit, offset, callback } = params;
+        const { filterAluno, limit, offset, callback } = params;
 
-        let query = '',
-            filterQuery = '',
-            totalQuery = `(
-                SELECT COUNT(*) FROM students
-            ) AS total`
+        let query = `
+            SELECT students.*, my_teacher.name AS professor_name FROM students
+            LEFT JOIN my_teacher ON (students.professor_id = my_teacher.id)
+            `
 
-        if (filter) {
-            filterQuery = `
-            WHERE students.name ILIKE '%${filter}%'
-            OR students.escola ILIKE '%${filter}%'`
-
-            totalQuery = `(
-                SELECT COUNT(*) FROM students
-                ${filterQuery}
-            ) AS total`
+        if (filterAluno) {
+            query = `
+                ${query}
+                WHERE students.name ILIKE '%${filterAluno}%'
+                OR my_teacher.name ILIKE '%${filterAluno}%'
+            `
         }
-        
+
         query = `
-            SELECT students.*, ${totalQuery} FROM students
-            ${filterQuery}
-            LIMIT $1 OFFSET $2`
-        
+            ${query}
+            ORDER BY students.id ASC
+            LIMIT $1 OFFSET $2
+            `
+                
         db.query(query, [limit, offset], function(err, results) {
             if (err) {
-                throw `Database error! ${err}`;
+                throw `Database error! ${err}`
             }
 
             callback(results.rows);
