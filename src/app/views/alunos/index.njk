@@ -5,17 +5,17 @@
 <div class="card table-container">
     <div>
         <a href="/alunos/create">Novo</a>
-    <div class="menu-form">
-        <form action="/alunos" method="GET">
-                <input 
-                    type="text" 
-                    name="filterAluno"
-                    placeholder="Pesquisar professor pelo nome..."
-                    value={{filterAluno}}
-                >
-            <button id="buscaAluno" type="submit">Buscar</button>
-        </form>
-    </div>
+        <div class="menu-form">
+            <form action="/alunos" method="GET">
+                    <input 
+                        type="text" 
+                        name="filterAluno"
+                        placeholder="Pesquisar professor pelo nome..."
+                        value={{filter}}
+                    >
+                <button id="buscaAluno" type="submit">Buscar</button>
+            </form>
+        </div>
     </div>
     
     <table width="100%">

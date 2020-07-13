@@ -3,7 +3,6 @@ const { age, date, birthDay } = require('../../lib/utils');
 
 module.exports = {
     index(req, res) {
-
         let { filter, page, limit } = req.query;
 
         page = page || 1;
@@ -16,7 +15,6 @@ module.exports = {
             limit,
             offset,
             callback(professores) {
-
                 const pagination = {
                     total: Math.ceil(professores[0].total / limit),
                     page

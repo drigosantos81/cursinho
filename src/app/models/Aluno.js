@@ -120,24 +120,33 @@ module.exports = {
         });
     },
 
+    
+
     paginate(params) {
-        const { filterAluno, limit, offset, callback } = params;
+        const { filter, limit, offset, callback } = params;
 
-        let query = `
-            SELECT students.*, my_teacher.name AS professor_name FROM students
-            LEFT JOIN my_teacher ON (students.professor_id = my_teacher.id)
+        let query = ``,
+            filterQuery = ``,
+            totalQuery = `(
+                SELECT COUNT(*) FROM students
+                ) AS total`
+
+        if (filter) {
+            filterQuery = `
+            WHERE students.name ILIKE '%${filter}%'
+            OR my_teacher.name ILIKE '%${filter}%'
             `
-
-        if (filterAluno) {
-            query = `
-                ${query}
-                WHERE students.name ILIKE '%${filterAluno}%'
-                OR my_teacher.name ILIKE '%${filterAluno}%'
+            totalQuery = `(
+                SELECT COUNT(*) FROM students
+                ${filterQuery}
+                ) AS total
             `
         }
 
         query = `
-            ${query}
+            SELECT students.*, ${totalQuery}, my_teacher.name AS professor_name FROM students
+            LEFT JOIN my_teacher ON (students.professor_id = my_teacher.id)
+            ${filterQuery}
             ORDER BY students.id ASC
             LIMIT $1 OFFSET $2
             `

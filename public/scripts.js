@@ -14,10 +14,22 @@ for (selectedPagination of listPages) {
     }
 }
 
+function selecao() {
+    // let select = document.getElementById("ddSelect");
+    // let values = document.getElementsByTagName("option");
+    // console.log(select);
+    // console.log(values);
+    // for (value of values) {
+    //     if (id. == 'professor') {
+    //         console.log('PROFESSOR');
+    //     } else {
+    //         console.log("Aluno");
+    //     }
+    // }
 
-// let select = document.getElementById("ddSelect");
 // let displayText = select.options[select.selectIndex].text;
 // document.getElementById('algum id').value=displayText;
+}
 
 function paginate(selectedPage, totalPages) {
     let pages = [],
@@ -66,8 +78,6 @@ function createPagination(pagination) {
                 elements += `<a href="?page=${page}">${page}</a>`;
             }
         }
-
-
     }
 
     pagination.innerHTML = elements;
@@ -79,11 +89,13 @@ if (pagination) {
     createPagination(pagination);
 }
 
-// =============================================================================
-// const listPages = document.querySelectorAll(".pagination");
+/*
+=============================================================================
+const listPages = document.querySelectorAll(".pagination");
 
-// for (selectedPagination of listPages) {
-//     if (currentPage.includes(selectedPagination.getAttribute(`href`))) {
-// currentPage.classList.add("paginationActive");
-//     }
-// }
+for (selectedPagination of listPages) {
+    if (currentPage.includes(selectedPagination.getAttribute(`href`))) {
+currentPage.classList.add("paginationActive");
+    }
+}
+*/
