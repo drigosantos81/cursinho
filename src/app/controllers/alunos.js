@@ -1,4 +1,5 @@
 const Aluno = require('../models/Aluno');
+const Professor = require('../models/Professor');
 const { age, date, birthDay } = require('../../lib/utils');
 
 module.exports = {
@@ -27,9 +28,17 @@ module.exports = {
     },
     
     create(req, res) {
-        Aluno.professorSelectOptions(function(options) {
-            return res.render("alunos/create", { professorOptions: options });
+        Professor.allPromise()
+        .then(function(results) {
+            const professorSelected = results.rows;
+            return res.render("alunos/create", { professorSelected });
+        }).catch(function(err) {
+            throw new Error(err);
         });
+
+        // Aluno.professorSelectOptions(function(options) {
+        //     return res.render("alunos/create", { professorOptions: options });
+        // });
     },
     
     post(req, res) {
@@ -61,17 +70,25 @@ module.exports = {
     },
     
     edit(req, res) {
-        Aluno.find(req.params.id, function(aluno) {
-            if (!aluno) {
-                return res.send('Registro não encontrado');
-            }
-
-            aluno.birth = date(aluno.date_birth).iso;
-
-            Aluno.professorSelectOptions(function(options) {
-                return res.render("alunos/edit", { aluno, professorOptions: options });
-            });
+        Professor.allPromise()
+        .then(function(results) {
+            const professorSelected = results.rows;
+            return res.render("alunos/create", { professorSelected });
+        }).catch(function(err) {
+            throw new Error(err);
         });
+        
+        // Aluno.find(req.params.id, function(aluno) {
+        //     if (!aluno) {
+        //         return res.send('Registro não encontrado');
+        //     }
+
+        //     aluno.birth = date(aluno.date_birth).iso;
+
+        //     Aluno.professorSelectOptions(function(options) {
+        //         return res.render("alunos/edit", { aluno, professorOptions: options });
+        //     });
+        // });
     },
     
     put(req, res) {

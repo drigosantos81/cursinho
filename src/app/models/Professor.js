@@ -3,6 +3,12 @@ const { age, date } = require('../../lib/utils');
 
 module.exports = {
 
+    allPromise() {
+        return db.query(`
+            SELECT * FROM my_teacher
+        `);
+    },
+
     all(callback) {
         db.query(`
             SELECT my_teacher.*, COUNT(students) AS total_alunos FROM my_teacher

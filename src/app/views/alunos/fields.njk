@@ -52,7 +52,7 @@
     <div>Estuda com</div>
     <div>
         <select name="professor">
-            {% for professor in professorOptions %}
+            {% for professor in professorSelected %}
                 <option value="{{professor.id}}" {% if students.professor_id == professor.id %}selected{% endif %}>
                     {{professor.name}}
                 </option>
