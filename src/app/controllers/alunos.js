@@ -28,6 +28,7 @@ module.exports = {
     },
     
     create(req, res) {
+        // PROMISE
         Professor.allPromise()
         .then(function(results) {
             const professorSelected = results.rows;
@@ -36,23 +37,28 @@ module.exports = {
             throw new Error(err);
         });
 
+        // CALLBACK
+
         // Aluno.professorSelectOptions(function(options) {
         //     return res.render("alunos/create", { professorOptions: options });
         // });
     },
     
-    post(req, res) {
+    async post(req, res) {
         const keys = Object.keys(req.body);
-
         for (key of keys) {
             if (req.body[key] == "") {
                 return res.send("Por favor, preencha todos os campos.");
             }
         }
 
-       Aluno.post(req.body, function(aluno) {
-           return res.redirect(`/alunos/${aluno.id}`);
-       });
+        let results = await Aluno.post(req.body);
+        const aluno = results.rows[0];
+
+        results = await Professor.allPromise();
+        const professores = results.rows;
+
+        return res.render('alunos/create', { aluno, professores });
     },
     
     show(req, res) {
@@ -69,22 +75,38 @@ module.exports = {
         });
     },
     
-    edit(req, res) {
-        Professor.allPromise()
-        .then(function(results) {
-            const professorSelected = results.rows;
-            return res.render("alunos/create", { professorSelected });
-        }).catch(function(err) {
-            throw new Error(err);
-        });
+    async edit(req, res) {
+        let results = await Aluno.findPromise(req.params.id);
+        const aluno = results.rows[0];
+
+        if (!aluno) {
+            return res.send('Produto não encontrado');
+        }
+
+        aluno.birth = date(aluno.date_birth).iso;
+
+        results = await Professor.allPromise();
+        const professorSelected = results.rows;
+
+        return res.render("alunos/edit", { aluno, professorSelected });
+
+        // PROMISE
+
+        // .then(function(results) {
+        //     const professorSelected = results.rows;
+        //     return res.render("alunos/create", { aluno, professorSelected });
+        // }).catch(function(err) {
+        //     throw new Error(err);
+        // });
         
+        // CALLBACK 
+
         // Aluno.find(req.params.id, function(aluno) {
         //     if (!aluno) {
         //         return res.send('Registro não encontrado');
         //     }
 
         //     aluno.birth = date(aluno.date_birth).iso;
-
         //     Aluno.professorSelectOptions(function(options) {
         //         return res.render("alunos/edit", { aluno, professorOptions: options });
         //     });
