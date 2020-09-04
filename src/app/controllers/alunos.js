@@ -36,12 +36,6 @@ module.exports = {
         }).catch(function(err) {
             throw new Error(err);
         });
-
-        // CALLBACK
-
-        // Aluno.professorSelectOptions(function(options) {
-        //     return res.render("alunos/create", { professorOptions: options });
-        // });
     },
     
     async post(req, res) {

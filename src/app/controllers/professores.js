@@ -24,18 +24,6 @@ module.exports = {
         };
 
         Professor.paginate(params);
-
-        // const { filterMaster } = req.query;
-
-        //     if (filterMaster) {
-        //         Professor.findProfessor(filterMaster, function(professores) {
-        //             return res.render("professores/index", { professores, filterMaster });
-        //         });
-        //     } else {
-        //         Professor.all(function(professores) {
-        //             return res.render("professores/index", { professores });
-        //         });
-        // }                
     },
     
     create(req, res) {
@@ -51,9 +39,9 @@ module.exports = {
             }
         }
 
-       Professor.post(req.body, function(professor) {
-           return res.redirect(`/professores/${professor.id}`);
-       });
+        Professor.post(req.body, function(professor) {
+            return res.redirect(`/professores/${professor.id}`);
+    });
     },
     
     show(req, res) {
